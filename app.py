@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load saved model
-model = joblib.load("best_model.pkl")
+model = joblib.load("best_model2.pkl")
 
 st.title("🎓 Job Status Predictor")
 st.write("Enter candidate information to predict employment status.")
@@ -54,3 +54,7 @@ if st.button("Predict Job Status"):
     label = "Employed" if prediction == 1 else "Unemployed"
     st.success(f"Predicted Job Status: **{label}**")
     st.info(f"Confidence: {prob:.2%}")
+
+    st.caption("\U0001F4A1 Note: The model considers all features together."
+               " Although some attributes (like extra-curricular activities) are positive,"
+               " other factors such as low skill level or lack of internship might influence the result.")
