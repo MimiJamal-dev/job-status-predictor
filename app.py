@@ -8,6 +8,15 @@ model = joblib.load("best_model.pkl")
 st.title("🎓 Job Status Predictor")
 st.write("Enter candidate information to predict employment status.")
 
+# Sidebar info about training data
+with st.sidebar:
+    st.subheader("📊 Training Data Info")
+    st.write("Unemployed: 418")
+    st.write("Employed: 1")
+    st.subheader("📊 Testing Data Info")
+    st.write("Unemployed: 110")
+    st.write("Employed: 0")
+
 # Input fields
 Gender = st.selectbox("Gender", ["Male", "Female"])
 Age = st.selectbox("Age", ["21", "22", "23", "24", "25"])  # Adjust based on real data
