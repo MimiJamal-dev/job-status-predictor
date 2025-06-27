@@ -123,9 +123,15 @@ input_data = pd.DataFrame([{
     "Skill": manual_encode(Skill, {"Low": 0, "Medium": 1, "High": 2}),
     "Extra-curricular": manual_encode(Extra_curricular, {"Yes": 1, "No": 0})
 }])
+# Reorder columns to match training
+expected_columns = scaler.feature_names_in_
+input_data = input_data[expected_columns]
 
 # Apply scaler
 input_scaled = scaler.transform(input_data)
+
+
+
 
 # Prediction
 if st.button("Predict Job Status"):
