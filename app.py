@@ -6,7 +6,7 @@ import joblib
 model = joblib.load("best_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
-st.title("🎓 Job Status Predictor")
+st.title("🎓 Prediciting Employability ")
 st.write("Enter candidate information to predict employment status.")
 
 # Sidebar info about training data
@@ -24,7 +24,7 @@ CGPA = st.selectbox("CGPA", [
     "4.00 - 3.75", "3.74 - 3.50", "3.49 - 3.00", "2.99 - 2.50",
     "2.49 - 2.00", "1.99 - 1.50", "1.49 - 1.00", "Below 1.00"
 ])
-Race = st.selectbox("Race", ["Malay", "Chinese", "Indian", "Others"])
+Race = st.selectbox("Race", ["Malay", "Bumiputera Sabah", "Bumiputera Sarawak"])
 Area_Field = st.selectbox("Area Field", [
     "SARJANA MUDA TEKNOLOGI MAKLUMAT (KEPUJIAN)",
     "SARJANA MUDA SAINS (KEPUJIAN) STATISTIK",
@@ -79,7 +79,7 @@ input_data = pd.DataFrame([{
         "4.00 - 3.75": 0, "3.74 - 3.50": 1, "3.49 - 3.00": 2, "2.99 - 2.50": 3,
         "2.49 - 2.00": 4, "1.99 - 1.50": 5, "1.49 - 1.00": 6, "Below 1.00": 7
     }),
-    "Race": manual_encode(Race, {"Malay": 0, "Chinese": 1, "Indian": 2, "Others": 3}),
+    "Race": manual_encode(Race, {"Malay": 0, "Bumiputera Sabah": 1, "Bumiputera Sarawak": 2}),
     "Area Field": manual_encode(Area_Field, {name: idx for idx, name in enumerate([
         "SARJANA MUDA TEKNOLOGI MAKLUMAT (KEPUJIAN)",
         "SARJANA MUDA SAINS (KEPUJIAN) STATISTIK",
