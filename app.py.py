@@ -197,15 +197,19 @@ if st.button("🎯 Predict Employment Status"):
     # FIXED: 0 = Employed, 1 = Unemployed
     label = "Employed" if prediction == 0 else "Unemployed"
 
-    if prediction == 0:
-        st.balloons()
-        st.success(f"🎉 Congratulations {candidate_name}! The model predicts you are **Employed**.")
-        confidence = probabilities[0] * 100  # probability of Employed
-    else:
-        st.warning(f"🔍 The model predicts {candidate_name} is **Unemployed**.")
-        confidence = probabilities[1] * 100  # probability of Unemployed
+   if prediction == 0:
+    st.balloons()
+    st.success(f"🎉 Congratulations {candidate_name}! The model predicts you are **Employed**.")
+    confidence = probabilities[0] * 100
+else:
+    st.warning(f"🔍 The model predicts {candidate_name} is **Unemployed**.")
+    confidence = probabilities[1] * 100
 
-    st.metric("Employment Probability", f"{confidence:.2f}%")
+st.metric(
+    f"{'Employment' if prediction == 0 else 'Unemployment'} Probability",
+    f"{confidence:.2f}%"
+)
+
 
     st.subheader("📈 Probability Distribution")
     prob_df = pd.DataFrame({
