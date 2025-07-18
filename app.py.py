@@ -11,8 +11,8 @@ import datetime
 st.set_page_config(page_title="Employability Predictor", page_icon="🎓", layout="centered")
 
 # --- Set Background ---
-def set_background(background.jpg):
-    with open(background.jpg, "rb") as img:
+def set_background("background.jpg"):
+    with open("background.jpg", "rb") as img:
         encoded = base64.b64encode(img.read()).decode()
     st.markdown(
         f"""
