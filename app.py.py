@@ -201,7 +201,7 @@ if st.button("🎯 Predict Employment Status"):
     else:
         st.warning(f"🔍 The model predicts {candidate_name} is **Unemployed**.")
 
-    st.metric("Confidence Level", f"{probabilities[prediction]*100:.2f}%")
+    st.metric("Employment Probability", f"{probabilities[prediction]*100:.2f}%")
 
     st.subheader("📈 Probability Distribution")
     prob_df = pd.DataFrame({
