@@ -11,8 +11,8 @@ import datetime
 st.set_page_config(page_title="Employability Predictor", page_icon="🎓", layout="centered")
 
 # --- Set Background ---
-def set_background("background.jpg"):
-    with open("background.jpg", "rb") as img:
+def set_background(image_file):
+    with open(image_file, "rb") as img:
         encoded = base64.b64encode(img.read()).decode()
     st.markdown(
         f"""
@@ -31,7 +31,9 @@ def set_background("background.jpg"):
         unsafe_allow_html=True
     )
 
-set_background("cad1183e-5b81-43de-b157-f5aa1c399e3e.png")
+# ✅ Now call the function with your image file name
+set_background("background.jpg")  # or "background.png" if that's the format
+
 
 # --- Custom CSS ---
 st.markdown("""
