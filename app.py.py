@@ -223,6 +223,6 @@ if st.button("🎯 Predict Employment Status"):
 st.markdown("""
 ---
 <center>
-© 2025 Predicting Employability | Final Year Project by [Your Name] – Universiti Malaya
+© 2025 Predicting Employability | Final Year Project by Syamimi – UiTM
 </center>
 """, unsafe_allow_html=True)
