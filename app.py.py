@@ -193,25 +193,29 @@ def generate_pdf(name, result_label, confidence_percent):
 if st.button("🎯 Predict Employment Status"):
     prediction = model.predict(input_scaled)[0]
     probabilities = model.predict_proba(input_scaled)[0]
-    label = "Employed" if prediction == 1 else "Unemployed"
 
-    if prediction == 1:
+    # FIXED: 0 = Employed, 1 = Unemployed
+    label = "Employed" if prediction == 0 else "Unemployed"
+
+    if prediction == 0:
         st.balloons()
         st.success(f"🎉 Congratulations {candidate_name}! The model predicts you are **Employed**.")
+        confidence = probabilities[0] * 100  # probability of Employed
     else:
         st.warning(f"🔍 The model predicts {candidate_name} is **Unemployed**.")
+        confidence = probabilities[1] * 100  # probability of Unemployed
 
-    st.metric("Employment Probability", f"{probabilities[prediction]*100:.2f}%")
+    st.metric("Employment Probability", f"{confidence:.2f}%")
 
     st.subheader("📈 Probability Distribution")
     prob_df = pd.DataFrame({
-        'Employment Status': ['Unemployed', 'Employed'],
+        'Employment Status': ['Employed', 'Unemployed'],
         'Probability': probabilities
     })
     st.bar_chart(prob_df.set_index("Employment Status"))
 
     # PDF download
-    pdf_bytes = generate_pdf(candidate_name, label, probabilities[prediction]*100)
+    pdf_bytes = generate_pdf(candidate_name, label, confidence)
     st.download_button(
         label="📄 Download Prediction Report (PDF)",
         data=pdf_bytes,
